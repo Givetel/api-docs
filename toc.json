@@ -2,8 +2,13 @@
   "collapseTableOfContents": true,
   "items": [
     {
+      "type": "item",
+      "title": "API Reference",
+      "uri": "/reference/givetel-openapi-spec.yaml"
+    },
+    {
       "type": "divider",
-      "title": "Contents"
+      "title": "API Docs"
     },
     {
       "type": "item",
@@ -28,11 +33,6 @@
       "type": "item",
       "title": "Creating Leads",
       "uri": "/docs/zapier_leads.md"
-    },
-    {
-      "type": "item",
-      "title": "API Reference",
-      "uri": "/reference/givetel-openapi-spec.yaml"
     }
   ]
 }
