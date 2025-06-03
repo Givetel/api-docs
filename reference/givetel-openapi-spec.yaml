@@ -1,0 +1,208 @@
+openapi: 3.0.0
+info:
+  title: Lead Reception API
+  description: API for receiving lead data from various sources
+  version: 0.0.1
+
+servers:
+  - url: https://givetel-api.com
+    description: Production server
+
+tags:
+  - name: Authentication
+    description: Endpoints for authenticating with the API
+  - name: Leads
+    description: Endpoints for submitting new leads
+
+paths:
+  /v2/token:
+    post:
+      summary: Get a token to use for authenticated requests
+      description: |
+        Returns a JWT to be used in the `Authorization` header of subsequent authenticated requests.
+
+        To use the token, simply add the `Authorization` header to your later request with the value `Bearer <token>`.
+      tags:
+        - Authentication
+      operationId: getToken
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: Successfully generated a token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Unauthorized - invalid API key
+        '429':
+          description: Too many requests
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+                description: Number of seconds to wait before retrying
+
+  /v2/leads:
+    post:
+      summary: Submit a new lead
+      description: |
+        Submit a new lead to the Givetel API.
+
+        This endpoint validates the lead data and returns an error if it is invalid. If the lead is valid, it is then processed and pushed to our dialler.
+      tags:
+        - Leads
+      security:
+        - ApiKeyAuth: []
+        - BearerAuth: []
+      operationId: createLead
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewLead'
+      responses:
+        '200':
+          description: Lead successfully processed and pushed to the dialler
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '202':
+          description: Lead received but not processed (duplicate or suppressed)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RejectionResponse'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid API key
+        '403':
+          description: Forbidden - invalid or expired bearer token
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+                description: Number of seconds to wait before retrying
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    NewLead:
+      type: object
+      required:
+        - supporter_firstname
+        - supporter_lastname
+        - charity
+        - source
+        - call_type
+      properties:
+        supporter_firstname:
+          type: string
+        supporter_lastname:
+          type: string
+        charity:
+          type: string
+          description: Charity partner acronym
+        source:
+          type: string
+          description: Data source identifier
+        call_type:
+          type: string
+          description: The type of call that the lead is associated with.
+          enum: [lead_conversion]
+          default: lead_conversion
+        campaign_id:
+          description: The internal Givetel campaign ID. Only use this field if specifically asked by Givetel.
+          type: string
+        phone:
+          type: string
+          pattern: '^61[0-9]{9}$'
+        mob_phone:
+          type: string
+          pattern: '^61[0-9]{9}$'
+        work_phone:
+          type: string
+          pattern: '^61[0-9]{9}$'
+        supporter_email:
+          type: string
+          format: email
+        supporter_gender:
+          type: string
+          enum: [male, female, other]
+        country:
+          type: string
+          default: AU
+        address1:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postcode:
+          type: string
+        additional_data:
+          type: object
+          description: Additional data to be stored in script_and_export_data
+        source_date:
+          type: string
+          format: date
+        source_time:
+          type: string
+          pattern: '^(0?[1-9]|1[0-2]):[0-5][0-9](am|pm)$'
+
+    SuccessResponse:
+      type: object
+      properties:
+        lead_id:
+          type: string
+        data:
+          type: object
+
+    TokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The generated token
+        expiresAt:
+          type: string
+          format: date-time
+          description: The date and time when the token will expire, in UTC
+
+    RejectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Reason for rejection
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error description
