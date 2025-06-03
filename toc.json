@@ -3,11 +3,11 @@
   "items": [
     {
       "type": "divider",
-      "title": "Overview"
+      "title": "Contents"
     },
     {
       "type": "item",
-      "title": "API Documentation",
+      "title": "Usage Guide",
       "uri": "/docs/givetel_api_documentation.md"
     },
     {
@@ -15,10 +15,6 @@
       "title": "Zapier Integration",
       "uri": "/docs/givetel_api_documentation.md"
     },  
-    {
-      "type": "divider",
-      "title": "API Reference"
-    },
     {
       "type": "item",
       "title": "API Reference",
