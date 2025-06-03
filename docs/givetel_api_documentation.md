@@ -123,6 +123,7 @@ curl -X POST https://givetel-api.com/v2/leads \
 ```
 
 ### Create Lead Schema
+
 [Scheme](../reference/givetel-openapi-spec.yaml/components/schemas/NewLead)
 
 The following are all available fields for a lead being sent via the Givetel Lead API.

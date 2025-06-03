@@ -10,7 +10,8 @@ The following are the steps involved in setting up the `/token` Sub-Zap. Each he
 
 ## 1. Create a Trigger - Sub-Zap by Zapier
 
-- Simply select the Sub-Zap by Zapier app for this step and click continue through until you can run a test and get a test record. This record will be blank and we won't do anything with it.
+- Select the Sub-Zap by Zapier app
+- Click continue through until you can run a test and get a test record. This record will be blank and we won't do anything with it.
 
 ## 2. Get Token & Expiry If Exists
 
@@ -18,6 +19,7 @@ The following are the steps involved in setting up the `/token` Sub-Zap. Each he
 - Name this step "Get Token & Expiry From Storage" or similar.
 - Choose the Action Event `Get Multiple Value` and press Next.
 - In the `Configure` tab, enter the keys `token` and `token_expires`.
+- Note that this step won't succeed when you test it yet, because we haven't stored a token - this happens later.
 
 ## 3. Get The Current Time in UTC
 
@@ -80,7 +82,7 @@ return { now: new Date().toISOString() };
 ### 11: Return the token that was fetched from storage
 
 - Select the `Sub-Zap` Zapier app for this step.
-- Name the step "Return Token" or similar".
+- Name the step "Return Token" or similar.
 - For the `Event`, select `Return From a Sub-Zap`.
 - In the `Configure` tab, create a return value called `token` and make the value the `Data` from the `Get New Token` step.
 

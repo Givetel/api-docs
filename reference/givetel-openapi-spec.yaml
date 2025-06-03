@@ -21,7 +21,7 @@ paths:
       description: |
         Returns a JWT to be used in the `Authorization` header of subsequent authenticated requests.
 
-        To use the token, simply add the `Authorization` header to your later request with the value `Bearer <token>`.
+        To use the token, add the `Authorization` header to your later request with the value `Bearer <token>`.
       tags:
         - Authentication
       operationId: getToken
