@@ -17,7 +17,7 @@ tags:
 paths:
   /v2/token:
     post:
-      summary: Get a token to use for authenticated requests
+      summary: Create an authentication token
       description: |
         Returns a JWT to be used in the `Authorization` header of subsequent authenticated requests.
 
@@ -46,7 +46,7 @@ paths:
 
   /v2/leads:
     post:
-      summary: Submit a new lead
+      summary: Create a new lead
       description: |
         Submit a new lead to the Givetel API.
 
