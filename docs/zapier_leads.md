@@ -65,7 +65,7 @@ If you need to set up Zaps for data coming from multiple sources, with differing
 // The native API fields are always preferred, because Givetel's automated reporting system is designed to work with them by default
 // However, there's no way to guarantee Givetel's native fields will cover every possible piece of data coming out of 3rd party services. As such, we provide `additional_data` for these outlier cases.
 return {
-  additional_data: JSON.stringify({})
+  additional_data: JSON.stringify({}),
 };
 ```
 
