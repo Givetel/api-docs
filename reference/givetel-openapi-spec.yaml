@@ -55,7 +55,7 @@ paths:
         - Leads
       security:
         - ApiKeyAuth: []
-        - BearerAuth: []
+          BearerAuth: []
       operationId: createLead
       requestBody:
         required: true
