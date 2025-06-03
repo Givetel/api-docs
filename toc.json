@@ -1,0 +1,28 @@
+{
+  "collapseTableOfContents": true,
+  "items": [
+    {
+      "type": "divider",
+      "title": "Overview"
+    },
+    {
+      "type": "item",
+      "title": "API Documentation",
+      "uri": "/docs/givetel_api_documentation.md"
+    },
+    {
+      "type": "item",
+      "title": "Zapier Integration",
+      "uri": "/docs/givetel_api_documentation.md"
+    },  
+    {
+      "type": "divider",
+      "title": "API Reference"
+    },
+    {
+      "type": "item",
+      "title": "FeeWise Partner API",
+      "uri": "/reference/givetel-openapi-spec.yaml"
+    }
+  ]
+}
