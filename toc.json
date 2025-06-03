@@ -12,9 +12,19 @@
     },
     {
       "type": "item",
-      "title": "Zapier Integration",
+      "title": "Zapier Integration - Overview",
       "uri": "/docs/zapier_integration.md"
     },  
+    {
+      "type": "item",
+      "title": "Zapier Integration - Auth",
+      "uri": "/docs/zapier_token.md"
+    },
+    {
+      "type": "item",
+      "title": "Zapier Integration - Leads",
+      "uri": "/docs/zapier_leads.md"
+    },
     {
       "type": "item",
       "title": "API Reference",
