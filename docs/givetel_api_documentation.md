@@ -8,7 +8,7 @@ title: Givetel API Documentation
 
 This API provides functionality to push leads to the Givetel dialler.
 
-## API Endpoint Structure
+## Endpoint Structure
 
 The URI for the Givetel API structure is as follows:
 
