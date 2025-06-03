@@ -11,18 +11,22 @@
       "uri": "/docs/givetel_api_documentation.md"
     },
     {
+      "type": "divider",
+      "title": "Zapier Integration"
+    },
+    {
       "type": "item",
-      "title": "Zapier Integration - Overview",
+      "title": "Overview",
       "uri": "/docs/zapier_integration.md"
     },  
     {
       "type": "item",
-      "title": "Zapier Integration - Auth",
+      "title": "Authentication",
       "uri": "/docs/zapier_token.md"
     },
     {
       "type": "item",
-      "title": "Zapier Integration - Leads",
+      "title": "Creating Leads",
       "uri": "/docs/zapier_leads.md"
     },
     {
