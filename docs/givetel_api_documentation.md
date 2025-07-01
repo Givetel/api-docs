@@ -124,8 +124,6 @@ curl -X POST https://givetel-api.com/v2/leads \
 
 ### Create Lead Schema
 
-[Scheme](../reference/givetel-openapi-spec.yaml/components/schemas/NewLead)
-
 The following are all available fields for a lead being sent via the Givetel Lead API.
 
 - `call_type`: string - must be exactly "lead_conversion" (**REQUIRED**)
@@ -152,13 +150,7 @@ The following are all available fields for a lead being sent via the Givetel Lea
 - `source_campaign_name`: string
 - `preference`: string
 - `interest`: string
-- `volunteered`: string
 - `petition_signed`: string
 - `petition_type`: string
-- `appeal`: string
-- `appeal_type`: string
-- `event_participant`: string
-- `event_participant_type`: string
-- `campaigner`: string
 - `start_date`: string - ISO-8601 (YYYY-MM-DD) date ie "2024-03-05". Should mark the date that a supporter's first donation will be made. Note this is only used for Welcome/Validation calls, and should not be supplied for `lead_conversion` leads.
 - `additional_data`: json blob ie `{ "key": "value", "key2": "value2"}`. Should be used for objects containing metadata that doesn't fit into our schema. Note it is always preferred to use the native fields in the schema, where possible.
