@@ -44,6 +44,35 @@ paths:
                 type: integer
                 description: Number of seconds to wait before retrying
 
+  /v2/rotate-key:
+    post:
+      summary: Rotate API key
+      description: Generate a new API key and invalidate the current one after 1 hour.
+      security:
+        - ApiKeyAuth: []
+          BearerAuth: []
+      responses:
+        '200':
+          description: Successfully rotated key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  new_api_key:
+                    type: string
+                    description: The new API key
+                  old_key_expires:
+                    type: string
+                    format: date-time
+                    description: When the old key will stop working
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /v2/leads:
     post:
       summary: Create a new lead
