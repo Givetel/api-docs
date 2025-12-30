@@ -51,6 +51,8 @@ paths:
       security:
         - ApiKeyAuth: []
           BearerAuth: []
+      tags:
+        - Authentication
       responses:
         '200':
           description: Successfully rotated key
